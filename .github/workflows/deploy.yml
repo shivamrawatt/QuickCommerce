@@ -1,0 +1,31 @@
+name: Local Deployment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Pull Latest Image
+        run: docker pull rrajivsingh/backend-app:latest
+
+      - name: Stop Old Container
+        shell: powershell
+        run: |
+          docker stop backend
+          if ($LASTEXITCODE -ne 0) {
+            Write-Host "Container not running. Continuing..."
+          }
+
+      - name: Remove Old Container
+        shell: powershell
+        run: |
+          docker rm backend
+          if ($LASTEXITCODE -ne 0) {
+            Write-Host "Container not found. Continuing..."
+          }
+
+      - name: Start New Container
+        run: docker run -d --name backend -p 3000:3000 rrajivsingh/backend-app:latest
