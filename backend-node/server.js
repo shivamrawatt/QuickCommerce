@@ -10,6 +10,9 @@ app.use(express.json());
 
 // app.use("/", require("./routes"));
 console.log("hello shivam, how are you doing today!!")
+console.log("hello shivam, how are you doing today what about the learning ci/cd")
+
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
