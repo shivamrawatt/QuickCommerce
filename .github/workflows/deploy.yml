@@ -11,20 +11,20 @@ jobs:
       - name: Pull Latest Image
         run: docker pull rrajivsingh/backend-app:latest
 
-      - name: Stop Old Container
+      - name: Stop and Remove Old Container (if it exists)
         shell: powershell
         run: |
-          docker stop backend
-          if ($LASTEXITCODE -ne 0) {
-            Write-Host "Container not running. Continuing..."
-          }
+          $container = docker ps -aq -f "name=^backend$"
 
-      - name: Remove Old Container
-        shell: powershell
-        run: |
-          docker rm backend
-          if ($LASTEXITCODE -ne 0) {
-            Write-Host "Container not found. Continuing..."
+          if ($container) {
+            Write-Host "Existing container found. Stopping..."
+            docker stop backend
+
+            Write-Host "Removing old container..."
+            docker rm backend
+          }
+          else {
+            Write-Host "No existing container found. Fresh deployment."
           }
 
       - name: Start New Container
