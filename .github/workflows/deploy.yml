@@ -5,9 +5,10 @@ name: Local Deployment
 
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Backend Release"]
+    types:
+      - completed
 
 jobs:
   deploy:

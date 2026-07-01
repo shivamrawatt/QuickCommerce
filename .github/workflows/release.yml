@@ -10,9 +10,10 @@ name: Backend Release
 
 
 on:
-  push:
-    branches:
-      - main        
+  workflow_run:
+    workflows: ["Backend CI"]
+    types:
+      - completed      
 
 jobs:
   release:
