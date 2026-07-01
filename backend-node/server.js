@@ -12,6 +12,7 @@ app.use(express.json());
 console.log("hello shivam, how are you doing today!!")
 console.log("hello shivam, how are you doing today what about the learning ci/cd")
 console.log("congratulations your ci/cd is working great ")
+console.log("docker bhai khush hua ")
 
 const PORT = process.env.PORT || 3000;
 
