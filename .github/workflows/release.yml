@@ -35,13 +35,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker Image
-        run: docker build -t rrajivsingh/backend-app:${{ github.event.inputs.version }} .
-
-      - name: Tag Image as Latest
-        run: docker tag rrajivsingh/backend-app:${{ github.event.inputs.version }} rrajivsingh/backend-app:latest
-
-      - name: Push Version Image
-        run: docker push rrajivsingh/backend-app:${{ github.event.inputs.version }}
+        run: docker build -t rrajivsingh/backend-app:latest .
 
       - name: Push Latest Image
         run: docker push rrajivsingh/backend-app:latest
