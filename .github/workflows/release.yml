@@ -1,12 +1,18 @@
 name: Backend Release
 
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       version:
+#         description: "Docker Image Version (Example: v1, v2, v1.0.0)"
+#         required: true
+#         default: "latest"
+
+
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: "Docker Image Version (Example: v1, v2, v1.0.0)"
-        required: true
-        default: "v1"
+  push:
+    branches:
+      - main        
 
 jobs:
   release:
